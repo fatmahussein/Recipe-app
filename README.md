@@ -27,7 +27,7 @@
 
 # 📖 RoR Food Recipe App <a name="about-project"></a>
 
-MichelineRecipe application is a dynamic and user-friendly recipe application developed with Ruby on Rails, designed to allow users create, read, update and delete their recipes. It has features like Authentication, Authorization,  Rails dynamic Routing and testing.
+This Recipe application is a dynamic and user-friendly recipe application developed with Ruby on Rails, designed to allow users create, read, update and delete their recipes. It has features like Authentication, Authorization,  Rails dynamic Routing and testing.
 
 
 ## 🛠 Built With <a name="built-with"></a>
