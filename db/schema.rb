@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_065104) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_110306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "food", force: :cascade do |t|
+  create_table "foods", force: :cascade do |t|
     t.string "name"
     t.string "measurement_unit"
     t.integer "price"
@@ -22,10 +22,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_065104) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_food_on_user_id"
+    t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
-  create_table "recipe", force: :cascade do |t|
+  create_table "recipefoods", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "recipe_id"
+    t.bigint "food_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_recipefoods_on_food_id"
+    t.index ["recipe_id"], name: "index_recipefoods_on_recipe_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.integer "preparation_time"
     t.integer "cooking_time"
@@ -34,17 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_065104) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_recipe_on_user_id"
-  end
-
-  create_table "recipefood", force: :cascade do |t|
-    t.integer "quantity"
-    t.bigint "recipe_id"
-    t.bigint "food_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["food_id"], name: "index_recipefood_on_food_id"
-    t.index ["recipe_id"], name: "index_recipefood_on_recipe_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,8 +53,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_065104) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "food", "users"
-  add_foreign_key "recipe", "users"
-  add_foreign_key "recipefood", "food"
-  add_foreign_key "recipefood", "recipe"
+  add_foreign_key "foods", "users"
+  add_foreign_key "recipefoods", "foods"
+  add_foreign_key "recipefoods", "recipes"
+  add_foreign_key "recipes", "users"
 end
