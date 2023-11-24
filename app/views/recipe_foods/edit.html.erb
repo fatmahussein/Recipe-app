@@ -1,0 +1,22 @@
+<section class="b">
+  <div>
+    <h2>Update Food Recipe</h2>
+    <ul>
+      <%= form_with model:  @recipe_food, url: {action: :update} do |f| %>
+        <li class="f-label">
+          <label class = "n">* Not in option? Add food type:</label><br>
+          <%= f.collection_select :food_id, @foods, :id, :name, class: "in" %>
+        </li>
+
+        <li class="f-label">
+          <%= f.label :quantity, class: "form-label" %><br>
+          <%= f.number_field :quantity, class: "input", step:1, required: true %>
+        </li>
+
+        <li class="btn-container">
+          <p><%= f.submit "Update Recipe", class: "b"%></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>
