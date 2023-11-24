@@ -18,7 +18,7 @@ class ShoppingListController < ApplicationController
   # end
 
   def missing_foods
-    @user = current_user 
+    @user = current_user
     @foods = @user.foods
     recipe_foods = @recipes.recipe_foods
     missing_items = []
