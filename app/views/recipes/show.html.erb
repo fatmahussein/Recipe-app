@@ -1,0 +1,75 @@
+<section class="show-recipe flex items-center mx-auto justify-center mt-24">
+  <div class="food flex flex-col gap-6 px-10">
+    <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><%= @recipe.name %></h2>
+    <div>
+      <div class="top-bar flex flex-col gap-2">
+
+        <article class="flex justify-between">
+          <div>
+              <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> (mins)</p>
+              <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> (mins)</p>
+          </div>
+          
+          <div class="mr-6">
+            <% if can? :update, @recipe %>
+              <%= form_with model: @recipe, url: recipe_path(@recipe.id), method: :patch, local: true do |form| %>
+                <div class="form-switch">
+                  <%= form.check_box :public, class: "form-check-input", onchange: 'this.form.submit()' %>
+                  <%= form.label :Public, 'public', class: "form-check-label", checked: @recipe.public %> <br />
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </article>
+
+        <article class="c">
+          <p class="mb-3 text-gray-500 dark:text-gray-400 first-line:uppercase first-line:tracking-widest first-letter:text-3xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start"><strong>Description:</strong> <%= @recipe.description %></p>
+        </article>
+
+      </div>
+
+      <div class="details flex justify-between">
+        <% if can? :read, @recipe %>
+          
+          <button class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            <%= link_to "Generate Shopping List", shopping_list_index_path(recipe_id: @recipe.id), class: 'btn btn-success' %>
+          </button>
+          <button class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            <%= link_to "Add Ingredient", new_recipe_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary' %>
+          </button>
+          
+        <% end %>
+      </div>
+
+      <div class=" pt-4 relative overflow-x-auto">
+        <table class="food-display w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-4">
+            <tr>
+              <th scope="col" class="px-6 py-3">Food</th>
+              <th scope="col" class="px-6 py-3">Quantity</th>
+              <th scope="col" class="px-6 py-3">Value</th>
+              <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @recipe_foods.each do |r_food| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= r_food.food.name%></th>
+              <td class="px-6 py-4"><%= r_food.food.quantity%></td>
+              <td class="px-6 py-4"><%= r_food.food.price%></td>
+              <% if can? :read, @recipe %>
+                <td class="bn px-6 py-4">
+                  <%= link_to "Edit", edit_recipe_recipe_food_path(@recipe, r_food), class: 'btn btn-warning' %>
+                  <%= button_to "Delete", delete_recipe_food_path(@recipe, r_food), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                </td>
+              <% end %>          
+            </tr>
+          <%end%>
+          </tbody>
+              
+        </table>
+      </div>
+    </div>
+  <div>
+</section>

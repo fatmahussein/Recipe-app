@@ -1,0 +1,43 @@
+<section class="food_list_container flex items-center justify-center mt-24">
+  <div class="food flex flex-col gap-4">
+    <%if @foods.empty?%>
+        <h2>Oops!! Food List is Empty</h2>
+        <%= link_to 'Add Food', new_food_path(), class: "btn" %>
+    <%else%> 
+      <div>
+        <article class="top">
+          <h2>Hello <%= current_user.name%>, Welcome to the App! </h2>
+          <div class="grid">
+            <%= link_to 'Add Food', new_food_path(), class: " justify-self-end text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+          </div>
+        </article>
+        <div class="relative overflow-x-auto">
+          <table class="food-display w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">Food</th>
+                <th scope="col" class="px-6 py-3">Measurement unit</th>
+                <th scope="col" class="px-6 py-3">Quantity</th>
+                <th scope="col" class="px-6 py-3">Unit Price($)</th>
+                <th scope="col" class="px-6 py-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @foods.each do |food| %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= food.name%></th>
+                    <td class="px-6 py-4"><%= food.measurement_unit%></td>
+                    <td class="px-6 py-4"><%= food.quantity%></td>
+                    <td class="px-6 py-4"><%= food.price%></td>
+                    <td class="px-6 py-4"><%= button_to 'Delete', food_path(food.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" %></td>
+                </tr>
+              <%end%>
+            </tbody>
+            
+          </table>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</section>

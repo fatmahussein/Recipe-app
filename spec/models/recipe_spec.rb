@@ -37,7 +37,7 @@ RSpec.describe Recipe, type: :model do
     user = User.create(name: 'kings collection')
     recipe = Recipe.new(
       name: 'egg rolls',
-      description: 'Boil eggs for 3o mins',
+      description: 'Boil eggs for 30 mins',
       preparation_time: 30,
       cooking_time: 60,
       user:
