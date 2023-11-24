@@ -24,7 +24,6 @@ default: &default
 development:
   <<: *default
   database: recipedb
-
   username: admin
   password: coding
   host: localhost
