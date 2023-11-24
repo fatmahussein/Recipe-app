@@ -1,0 +1,34 @@
+<section class="new_food grid mx-auto flex-1 py-4 mt-24 w-[80%]">
+  <div class="page-content justify-self-center flex flex-col items-centre gap-2">
+    <h2 class="title text-2xl text-slate-900">Add a new meal</h2>
+    <ul class =" flex gap-2 w-full max-w-xs">
+        <%= form_with(model: @food, html: { class: 'post-form flex flex-1 flex-col gap-2 bg-[#f8fafc] shadow-md rounded px-8 pt-6 pb-8 mb-4' }) do |f| %>
+    
+          <li class="f-label">
+            <%= f.label :food_type, class: "form-label block text-gray-700 text-sm font-bold mb-2"%><br>
+            <%= f.text_field :name, class: 'fm-input outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900',  required: true %>
+          </li>
+
+          <li class="f-label">
+            <%= f.label :measurement_unit, class: "form-label form-label block text-gray-700 text-sm font-bold mb-2" %><br>
+            <%= f.select :measurement_unit, options_for_select([['Gram', 'gram'], ['Ounce', 'ounce'], ['Cup', 'cup'], ['Tablespoon', 'tablespoon']], selected: 'grams'), class: "form-control outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900" %>
+          </li>
+
+          <li class="f-label">
+            <%= f.label :price, class: "form-label form-label form-label block text-gray-700 text-sm font-bold mb-2" %><br>
+            <%= f.number_field :price, class: 'fm-input outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900', required: true %>
+          </li>
+
+          <li class="f-label">
+            <%= f.label :quantity, class: "form-label form-label form-label block text-gray-700 text-sm font-bold mb-2" %><br>
+            <%= f.number_field :quantity, class: 'fm-input outline-none shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-emerald-900', step:1, required: true %>
+          </li>
+
+          <li class="btn-container">
+            <p><%= f.submit "Add Food", data: { turbo: false }, class: "btn btn-primary submit-btn max-w-max justify-self-center shadow bg-cyan-800 hover:bg-cyan-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" %></p>
+          </li>
+  
+      <% end %>
+    </ul>
+  </div>
+</section>
