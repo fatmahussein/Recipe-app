@@ -10,7 +10,7 @@ RSpec.feature 'User authentication', type: :feature do
     fill_in 'Password', with: 'password'
     click_button 'Log in'
 
-    expect(page).to have_content('Signed in successfully') # Adjust to the content you expect after login
+    expect(page).to have_content('Signed in successfully')
   end
 
   scenario 'User registers' do
@@ -22,6 +22,6 @@ RSpec.feature 'User authentication', type: :feature do
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
 
-    expect(page).to have_content('You have signed up successfully') # Adjust to the content you expect after registration
+    expect(page).to have_content('You have signed up successfully')
   end
 end
