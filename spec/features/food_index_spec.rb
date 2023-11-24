@@ -15,10 +15,10 @@ RSpec.feature 'Food#index Page', type: :feature do
     expect(page).not_to have_button('Delete', exact: true)
   end
 
-#   scenario 'authorized user can delete their food' do
-#     user = create(:user)
-#     login_as(user, scope: :user)
-#     visit root_path
-#     expect(page).not_to have_button('Delete', exact: true)
-#   end
+  #   scenario 'authorized user can delete their food' do
+  #     user = create(:user)
+  #     login_as(user, scope: :user)
+  #     visit root_path
+  #     expect(page).not_to have_button('Delete', exact: true)
+  #   end
 end

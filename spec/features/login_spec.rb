@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'User authentication', type: :feature do
   scenario 'User logs in' do
     user = create(:user, email: 'user@example.com', password: 'password')
-    
+
     visit new_user_session_path
 
     fill_in 'Email', with: user.email
