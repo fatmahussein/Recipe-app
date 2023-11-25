@@ -1,11 +1,11 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user)
     user ||= User.new
-    can :read, Recipe, user_id: user.id
 
-    can :manage, Food, user_id: user.id unless user.nil?
-    can :manage, Recipe, user_id: user.id unless user.nil?
+    can :read, :all
+    can :manage, Food, { user_id: user.id }
+    can %i[show], Recipe, :all
+    can %i[index new create destroy], Recipe, { user_id: user.id }
   end
 end

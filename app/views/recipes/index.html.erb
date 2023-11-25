@@ -6,11 +6,7 @@
     <%else%> 
       <div class="recipe_title flex flex-col gap-4">
         <article class="top flex justify-center text-center">
-         
-          <div class="mb-4 grid">
-            <%= link_to 'Add Food', new_food_path(), class: "btn btn-primary justify-self-start" %>
-          </div> 
-          <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Find your favourite recipe here</h2>
+            <h2 class="text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Find your favourite recipe here</h2>
         </article>
         <div class="p-2 flex flex-col gap-2">
           <% @recipes.each_with_index do |recipe, index| %>
