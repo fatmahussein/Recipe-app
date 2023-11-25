@@ -9,12 +9,18 @@ RSpec.feature 'Recipes management', type: :feature do
   end
 
   scenario 'User views recipe index page' do
+    recipe = create(:recipe, user:)
+    visit recipes_path
+
     expect(page).to have_content('Find your favourite recipe here')
     expect(page).to have_link('Add a Recipe')
   end
 
   scenario 'User adds a new recipe' do
-    click_link 'Add Recipe'
+    recipe = create(:recipe, user:)
+    visit recipes_path
+
+    click_link 'Add a Recipe'
     expect(page).to have_current_path(new_recipe_path)
 
     expect(page).to have_content('Add a new recipe')
@@ -22,7 +28,7 @@ RSpec.feature 'Recipes management', type: :feature do
 
   scenario 'User views a specific recipe' do
     recipe = create(:recipe, user:)
-    visit recipe_path(recipe)
+    visit recipes_path
 
     expect(page).to have_content(recipe.name)
     expect(page).to have_content("Preparation Time: #{recipe.preparation_time} (mins)")
