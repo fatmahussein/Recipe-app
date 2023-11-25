@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
   it 'is valid with valid attributes' do
-    user = User.create(name: 'kings collection')
+    user = User.new(email: 'bke@gmail.com', password: 'error', name: 'John Wick')
     recipe = Recipe.new(
       name: 'egg rolls',
       description: 'Boil eggs for 3o mins',
@@ -34,7 +34,7 @@ RSpec.describe Recipe, type: :model do
   end
 
   it 'is associated with a user' do
-    user = User.create(name: 'kings collection')
+    user = User.new(email: 'bke@gmail.com', password: 'error', name: 'John Wick')
     recipe = Recipe.new(
       name: 'egg rolls',
       description: 'Boil eggs for 30 mins',

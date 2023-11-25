@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Food, type: :model do
   it 'is valid with valid attributes' do
-    user = User.create(name: 'kings collection')
+    user = User.new(email: 'bke@gmail.com', password: 'errorpass', name: 'John Wick')
     food = Food.new(
       name: 'eggs',
       measurement_unit: 'Grams',
@@ -34,7 +34,7 @@ RSpec.describe Food, type: :model do
   end
 
   it 'is associated with a user' do
-    user = User.create(name: 'kings collection')
+    user = User.new(email: 'altman@gmail.com', password: 'waiting', name: 'sam')
     food = Food.new(
       name: 'eggs',
       measurement_unit: 'Grams',

@@ -4,7 +4,9 @@ RSpec.describe User, type: :model do
   describe 'Validations' do
     it 'is valid with valid attributes' do
       user = User.new(
-        name: 'John Wick'
+        name: 'John Wick',
+        email: 'test@example.com',
+        password: 'password'
       )
       expect(user).to be_valid
     end
@@ -15,7 +17,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'has many foods' do
-      user = User.new(name: 'John Wick')
+      user = User.new(email: 'bke@gmail.com', password: 'errorpas', name: 'John Wick')
       food1 = Food.new(name: 'Food 1', measurement_unit: 'Grams', price: 10.99, quantity: 500, user:)
       food2 = Food.new(name: 'Food 2', measurement_unit: 'Grams', price: 8.99, quantity: 300, user:)
       user.foods << food1
@@ -24,7 +26,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'has many recipes' do
-      user = User.new(name: 'John Wick')
+      user = User.new(email: 'bke@gmail.com', password: 'errorpas', name: 'John Wick')
       recipe1 = Recipe.new(name: 'Recipe 1', description: 'Description 1', preparation_time: 30, cooking_time: 60,
                            user:)
       recipe2 = Recipe.new(name: 'Recipe 2', description: 'Description 2', preparation_time: 40, cooking_time: 50,
