@@ -43,7 +43,7 @@ class RecipeFoodsController < ApplicationController
 
   def destroy
     @recipe_food.destroy
-    redirect_to recipe_foods_url, notice: 'Recipe Food was successfully destroyed.'
+    redirect_to @recipe_food, notice: 'Recipe Food was successfully destroyed.'
   end
 
   private

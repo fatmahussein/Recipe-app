@@ -39,6 +39,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe.destroy
+    @recipe.recipe_foods.destroy_all
     redirect_to recipes_path, notice: 'Recipe was successfully destroyed.'
   end
 
