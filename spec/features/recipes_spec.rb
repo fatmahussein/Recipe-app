@@ -14,7 +14,7 @@ RSpec.feature 'Recipes management', type: :feature do
   end
 
   scenario 'User adds a new recipe' do
-    click_link 'Add a Recipe'
+    click_link 'Add Recipe'
     expect(page).to have_current_path(new_recipe_path)
 
     expect(page).to have_content('Add a new recipe')

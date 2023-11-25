@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Block where you can add custom routes or override default routes related to the User model within the Devise scope.
-  # devise_scope :user do
-  #   get '/users/sign_out', to: 'devise/sessions#destroy'
-  
-  # end
+   devise_scope :user do
+     get '/users/sign_out', to: 'devise/sessions#destroy'
+   end
   resources :users, only: [:index, :show, :create, :destroy]
   resources :foods, only: %i[new create destroy]
 
